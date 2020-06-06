@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity() {
         compareFiji()
     }
 
+    /**
+     * 2020a
+     * Morocco springs forward on 2020-05-31, not 2020-05-24.
+     */
     private fun compareCasablanca() {
         val casablancaZoneId = "Africa/Casablanca"
 
@@ -41,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 2019c
+     * Fiji observes DST from 2019-11-10 to 2020-01-12.
+     */
     private fun compareFiji() {
         val fijiZoneId = "Pacific/Fiji"
 
