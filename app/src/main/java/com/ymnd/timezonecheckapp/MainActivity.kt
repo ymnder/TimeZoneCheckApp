@@ -1,23 +1,17 @@
 package com.ymnd.timezonecheckapp
 
-import android.icu.util.TimeZone
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import org.joda.time.DateTime
-import org.joda.time.DateTimeZone
-import java.time.ZoneId
-import java.time.ZonedDateTime
 
 class MainActivity : AppCompatActivity() {
+
+    private val checkTzHelper = CheckTzHelper()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        Log.v("TZ_TEST: Device", TimeZone.getTZDataVersion().toString())
-        Log.v("TZ_TEST: ThreeTenABP", "2020a")
-        Log.v("TZ_TEST: Joda", "2020a")
-
+        checkTzHelper.printDeviceOsVersion()
+        checkTzHelper.printTzVersion()
         compareCasablanca()
         compareFiji()
     }
@@ -27,22 +21,13 @@ class MainActivity : AppCompatActivity() {
      * Morocco springs forward on 2020-05-31, not 2020-05-24.
      */
     private fun compareCasablanca() {
-        val casablancaZoneId = "Africa/Casablanca"
-
-        for (hour in 0..2) {
-            val dawsonZoneId = ZoneId.of(casablancaZoneId)
-            val dawsonTime = ZonedDateTime.of(2020, 5, 24, hour, 0, 0, 0, dawsonZoneId)
-
-            val dawsonZoneIdBy310 = org.threeten.bp.ZoneId.of(casablancaZoneId)
-            val dawsonTimeBy310 = org.threeten.bp.ZonedDateTime.of(2020, 5, 24, hour, 0, 0, 0, dawsonZoneIdBy310)
-
-            val dawsonZoneIdByJoda = DateTimeZone.forID(casablancaZoneId)
-            val dawsonTimeByJoda = DateTime(2020, 5, 24, hour, 0, 0, 0, dawsonZoneIdByJoda)
-
-            println("TZ_TEST: default, $dawsonTime")
-            println("TZ_TEST: ThreeTenABP, $dawsonTimeBy310")
-            println("TZ_TEST: Joda, $dawsonTimeByJoda")
-        }
+        val targetDate = CheckTzHelper.TargetDate(
+                zoneId = "Africa/Casablanca",
+                year = 2020,
+                month = 5,
+                day = 24
+        )
+        checkTzHelper.printDateTime(targetDate)
     }
 
     /**
@@ -50,21 +35,12 @@ class MainActivity : AppCompatActivity() {
      * Fiji observes DST from 2019-11-10 to 2020-01-12.
      */
     private fun compareFiji() {
-        val fijiZoneId = "Pacific/Fiji"
-
-        for (hour in 0..2) {
-            val dawsonZoneId = ZoneId.of(fijiZoneId)
-            val dawsonTime = ZonedDateTime.of(2019, 11, 3, hour, 0, 0, 0, dawsonZoneId)
-
-            val dawsonZoneIdBy310 = org.threeten.bp.ZoneId.of(fijiZoneId)
-            val dawsonTimeBy310 = org.threeten.bp.ZonedDateTime.of(2019, 11, 3, hour, 0, 0, 0, dawsonZoneIdBy310)
-
-            val dawsonZoneIdByJoda = DateTimeZone.forID(fijiZoneId)
-            val dawsonTimeByJoda = DateTime(2019, 11, 3, hour, 0, 0, 0, dawsonZoneIdByJoda)
-
-            println("TZ_TEST: default, $dawsonTime")
-            println("TZ_TEST: ThreeTenABP, $dawsonTimeBy310")
-            println("TZ_TEST: Joda, $dawsonTimeByJoda")
-        }
+        val targetDate = CheckTzHelper.TargetDate(
+                zoneId = "Pacific/Fiji",
+                year = 2019,
+                month = 11,
+                day = 3
+        )
+        checkTzHelper.printDateTime(targetDate)
     }
 }
