@@ -33,6 +33,8 @@ V/TZ_TEST: Joda, 2019-11-03T02:00:00.000+12:00
 ## Libraries
  - [JakeWharton/ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP)
  - [dlew/joda-time-android](https://github.com/dlew/joda-time-android)
+ - [robolectric/robolectric](https://github.com/robolectric/robolectric/releases)
+ - [joel-costigliola/assertj-core](https://github.com/joel-costigliola/assertj-core)
 
 ## Reference
  - [java.time customizations](https://developer.android.com/studio/write/java8-support-table#java-time-customizations)
