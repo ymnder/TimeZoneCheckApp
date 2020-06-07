@@ -22,10 +22,10 @@ class MainActivity : AppCompatActivity() {
      */
     private fun compareCasablanca() {
         val targetDate = CheckTzHelper.TargetDate(
-                zoneId = "Africa/Casablanca",
-                year = 2020,
-                month = 5,
-                day = 24
+            zoneId = "Africa/Casablanca",
+            year = 2020,
+            month = 5,
+            day = 24
         )
         checkTzHelper.printDateTime(targetDate)
     }
@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity() {
      */
     private fun compareFiji() {
         val targetDate = CheckTzHelper.TargetDate(
-                zoneId = "Pacific/Fiji",
-                year = 2019,
-                month = 11,
-                day = 3
+            zoneId = "Pacific/Fiji",
+            year = 2019,
+            month = 11,
+            day = 3
         )
         checkTzHelper.printDateTime(targetDate)
     }
