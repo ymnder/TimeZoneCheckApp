@@ -1,8 +1,8 @@
 package com.ymnd.timezonecheckapp
 
-import android.icu.util.TimeZone
 import android.os.Build
 import android.util.Log
+import android.util.TimeUtils
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import java.time.ZoneId
@@ -22,7 +22,7 @@ class CheckTzHelper {
 
     fun printTzVersion() {
         Log.v("TZ_TEST", "---- tz database version ----")
-        Log.v("TZ_TEST", "Device: ${TimeZone.getTZDataVersion()}")
+        Log.v("TZ_TEST", "Device: ${TimeUtils.getTimeZoneDatabaseVersion()}")
         Log.v("TZ_TEST", "ThreeTenABP: 2020a")
         Log.v("TZ_TEST", "Joda: 2020a")
     }
